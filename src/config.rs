@@ -10,11 +10,13 @@ struct ConfigData {
 struct FirstPeriod {
     pub adventurers: u64,
     pub destinations: u64,
+    pub adventures: u64,
+    pub participations: u64
 }
 
 impl ConfigData {
     pub fn new() -> Self {
-        ConfigData { first_period: FirstPeriod { adventurers: 0, destinations: 0 } }
+        ConfigData { first_period: FirstPeriod { adventurers: 0, destinations: 0, adventures: 0, participations: 0 } }
     }
 }
 
@@ -51,5 +53,13 @@ impl ConfigReader {
 
     pub fn get_first_destinations(&self) -> u64 {
         self.config_data.first_period.destinations
+    }
+
+    pub fn get_first_adventures(&self) -> u64 {
+        self.config_data.first_period.adventures
+    }
+
+    pub fn get_first_participations(&self) -> u64 {
+        self.config_data.first_period.participations
     }
 }
