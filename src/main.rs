@@ -1,5 +1,6 @@
 mod adventurers; pub mod letter_data; pub mod model;
 mod config;
+mod destinations;
 use std::time::{Duration, Instant};
 use adventurers::AdventurerGenerator;
 
