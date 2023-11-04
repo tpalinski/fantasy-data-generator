@@ -14,7 +14,7 @@ impl Generator {
     }
 
     fn generate_single(&mut self) -> String {
-        return get_random_consonant(&mut self.rng) + &get_random_consonant(&mut self.rng) + &get_random_vowel(&mut self.rng) + &get_random_consonant(&mut self.rng) + &get_random_vowel(&mut self.rng) + &get_random_consonant(&mut self.rng)
+        return get_random_consonant(&mut self.rng).to_uppercase() + &get_random_consonant(&mut self.rng) + &get_random_vowel(&mut self.rng) + &get_random_consonant(&mut self.rng) + &get_random_vowel(&mut self.rng) + &get_random_consonant(&mut self.rng)
     }
 
     pub fn generate_multiple(&mut self, amount: u64) -> Vec<String>{

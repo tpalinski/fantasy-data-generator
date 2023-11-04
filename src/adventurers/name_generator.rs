@@ -67,7 +67,7 @@ impl GenerationModes {
     pub fn generate(self, rng: &mut rand::rngs::ThreadRng) -> String {
         match self {
             Self::SYMMETRICAL => {
-                get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng)
+                get_random_consonant(rng).to_uppercase() + &get_random_vowel(rng) + &get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng)
             }
             _ => String::from("Not implemented")
         }

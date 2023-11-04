@@ -45,11 +45,11 @@ impl ConfigReader {
         self.config_data = config_data;
     }
 
-    pub fn get_first_adventurers(self) -> u64{
+    pub fn get_first_adventurers(&self) -> u64{
         self.config_data.first_period.adventurers
     }
 
-    pub fn get_first_destinations(self) -> u64 {
+    pub fn get_first_destinations(&self) -> u64 {
         self.config_data.first_period.destinations
     }
 }

@@ -11,7 +11,7 @@ fn get_random_suffix(rng: &mut rand::rngs::ThreadRng) -> String {
 }
 
 fn get_random_name(rng: &mut rand::rngs::ThreadRng) -> String {
-    get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng)
+    get_random_consonant(rng).to_uppercase() + &get_random_vowel(rng) + &get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng) + &get_random_vowel(rng) + &get_random_consonant(rng)
 }
 
 pub fn get_place_name(rng: &mut rand::rngs::ThreadRng) -> String {
