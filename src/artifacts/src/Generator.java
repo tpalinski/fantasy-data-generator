@@ -13,7 +13,7 @@ public class Generator {
     public Generator() {}
 
     public void saveItems(List<String> items, List<String> prefixes) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("artefakty.csv", true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("../../data/artefakty.csv", true));
         for (String item : items) {
             for (String prefix : prefixes) {
                 String text;
