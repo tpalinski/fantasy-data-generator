@@ -24,8 +24,9 @@ impl AdventureGenerator {
         let facility = fk::get_random_branch(&mut self.rng, self.branches);
         let destination = fk::get_random_destination(&mut self.rng, self.destinations);
         let date = dates::get_random_date(String::from(&self.start_date), String::from(&self.t1_date));
-        let deadline = dates::get_random_deadline(date, &mut self.rng).to_string();
-        let date = date.to_string();
+        let deadline = dates::get_random_deadline(date, &mut self.rng);
+        let date = dates::date_to_string(date);
+        let deadline = dates::date_to_string(deadline);
         let status = status::get_random_status(&mut self.rng);
         let cost = cost::get_random_cost(&mut self.rng);
         Adventure::new(id, facility, destination, date, deadline, status, cost)

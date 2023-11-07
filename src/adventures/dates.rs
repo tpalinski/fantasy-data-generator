@@ -11,3 +11,7 @@ pub fn get_random_deadline(date: chrono::DateTime<Utc>, rng: &mut rand::rngs::Th
     let offset = rng.gen_range(DEADLINE_RANGE);
     date + Duration::days(offset)
 }
+
+pub fn date_to_string(date: chrono::DateTime<Utc>) -> String {
+    date.to_string()[0..10].to_string()
+}
