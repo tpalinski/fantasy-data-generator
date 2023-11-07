@@ -4,11 +4,11 @@ destinations = 1350
 adventures = 120000
 participations = 350000
 artifacts = 250000
-date = "2010-01-01T12:00:00Z"
-start_date = "2000-01-01T12:00:00Z"
+date = "2023-05-01T12:00:00Z"
+start_date = "2023-01-01T12:00:00Z"
 
 [second_period]
-date = "2020-01-01T12:00:00Z"
+date = "2023-11-01T12:00:00Z"
 adventures = 5000
 participations = 30000
 artifacts = 20000
