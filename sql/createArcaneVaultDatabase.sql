@@ -35,7 +35,7 @@ CREATE TABLE expeditions(
     expedition_id INT IDENTITY(1,1) PRIMARY KEY,
     start_date DATE,
     deadline DATE,
-    status NVARCHAR(30) CHECK (status IN ('planned', 'in progress', 'ended successfully', 'ended unsuccesfully')),
+    status NVARCHAR(30) CHECK (status IN ('planned', 'in progress', 'finished', 'failed')),
     expense INT,
     facility_id INT,
     FOREIGN KEY (facility_id) REFERENCES facilities(facility_id) ON DELETE CASCADE,
@@ -45,7 +45,7 @@ CREATE TABLE expeditions(
 
 CREATE TABLE artifacts(
     artifact_id INT IDENTITY(1,1) PRIMARY KEY,
-    status NVARCHAR(30) CHECK (status IN ('unidentfied', 'identified', 'sold', 'stolen', 'broken')),
+    status NVARCHAR(30) CHECK (status IN ('Unidentfied', 'Identified', 'Sold', 'Stolen', 'Broken')),
     type NVARCHAR(50),
     expedition_id INT,
     FOREIGN KEY (expedition_id) REFERENCES expeditions(expedition_id) ON DELETE CASCADE,
