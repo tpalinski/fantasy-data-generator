@@ -14,7 +14,7 @@ impl Generator {
     fn generate_single(&mut self) -> String {
         let x = self.rng.gen_range(COORDINATE_RANGE);
         let y = self.rng.gen_range(COORDINATE_RANGE);
-        x.to_string() + ";" + &y.to_string()
+        x.to_string() + ", " + &y.to_string() 
     }
 
     pub fn generate_multiple(&mut self, amount: u64) -> Vec<String> {

@@ -9,6 +9,8 @@ use adventurers::AdventurerGenerator;
 
 use crate::{config::ConfigReader, destinations::DestinationGenerator, participations::ParticipationsGenerator, artifacts::ArtifactGenerator, adventures::AdventureGenerator};
 
+const FACILITIES: u64 = 10;
+
 fn main() {
     let mut config_data = ConfigReader::new("config.toml");
     config_data.get_config();
@@ -38,8 +40,10 @@ fn main() {
     println!("Generated artifacts in {:?}", duration);
     // Generate adventures
     let start = Instant::now();
-    let mut adventures_generator = AdventureGenerator::new(config_data.get_first_adventures(), 10, config_data.get_first_destinations(), config_data.get_start_date(), config_data.get_t1());
+    let mut adventures_generator = AdventureGenerator::new(config_data.get_first_adventures(), FACILITIES, config_data.get_first_destinations(), config_data.get_start_date(), config_data.get_t1());
     adventures_generator.generate();
     let duration = start.elapsed();
     println!("Generated adventures in {:?}", duration);
+
+    // Generate and modify data for second period
 }
