@@ -55,4 +55,9 @@ fn main() {
     adv.append(config_data.get_second_adventurers());
     let duration = start.elapsed();
     println!("Generated users for T2 in {:?}", duration);
+    //Generate and modify artifacts
+    let start = Instant::now();
+    art.append(config_data.get_second_artifacts(), config_data.get_updated(), config_data.get_total_adventures());
+    let duration = start.elapsed();
+    println!("Generated and modified artifacts for T2 in {:?}", duration);
 }

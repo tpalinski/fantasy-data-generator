@@ -24,12 +24,13 @@ struct SecondPeriod {
     pub adventures: u64,
     pub participations: u64,
     pub artifacts: u64,
-    pub adventurers: u64
+    pub adventurers: u64,
+    pub identified_artifacts: u64,
 }
 
 impl ConfigData {
     pub fn new() -> Self {
-        ConfigData { first_period: FirstPeriod { adventurers: 0, destinations: 0, adventures: 0, participations: 0, date: "01.01.1900".to_string(), artifacts: 0, start_date: "01.01.1900".to_string()}, second_period: SecondPeriod { date: "01.02.1900".to_string() , adventures: 0, participations: 0, artifacts: 0, adventurers: 0} }
+        ConfigData { first_period: FirstPeriod { adventurers: 0, destinations: 0, adventures: 0, participations: 0, date: "01.01.1900".to_string(), artifacts: 0, start_date: "01.01.1900".to_string()}, second_period: SecondPeriod { date: "01.02.1900".to_string() , adventures: 0, participations: 0, artifacts: 0, adventurers: 0, identified_artifacts: 0} }
     }
 }
 
@@ -95,6 +96,10 @@ impl ConfigReader {
         self.config_data.second_period.artifacts
     }
 
+    pub fn get_identified_artifacts(&self) -> u64 {
+        self.config_data.second_period.identified_artifacts
+    }
+
     pub fn get_start_date(&self) -> String {
         String::from(&self.config_data.first_period.start_date)
     }
@@ -105,5 +110,13 @@ impl ConfigReader {
 
     pub fn get_t2(&self) -> String {
         String::from(&self.config_data.second_period.date)
+    }
+
+    pub fn get_updated(&self) -> u64 {
+        self.config_data.second_period.identified_artifacts
+    }
+
+    pub fn get_total_adventures(&self) -> u64 {
+        self.get_first_adventures() + self.get_second_adventures()
     }
 }
