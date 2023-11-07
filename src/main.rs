@@ -12,11 +12,13 @@ use crate::{config::ConfigReader, destinations::DestinationGenerator, participat
 const FACILITIES: u64 = 10;
 
 fn main() {
+    println!("Fetching config data");
     let mut config_data = ConfigReader::new("config.toml");
     config_data.get_config();
+    println!("Generating data for T1");
     //Generate adventurers
     let start = Instant::now();
-    let adv = AdventurerGenerator::new(config_data.get_first_adventurers());
+    let mut adv = AdventurerGenerator::new(config_data.get_first_adventurers());
     adv.generate();
     let duration = start.elapsed();
     println!("Generated users in {:?}", duration);
@@ -46,4 +48,11 @@ fn main() {
     println!("Generated adventures in {:?}", duration);
 
     // Generate and modify data for second period
+
+    //Generate adventurers
+    println!("Generating data for T2");
+    let start = Instant::now();
+    adv.append(config_data.get_second_adventurers());
+    let duration = start.elapsed();
+    println!("Generated users for T2 in {:?}", duration);
 }

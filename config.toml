@@ -9,3 +9,7 @@ start_date = "2000-01-01T12:00:00Z"
 
 [second_period]
 date = "2020-01-01T12:00:00Z"
+adventures = 5000
+participations = 30000
+artifacts = 20000
+adventurers = 300
