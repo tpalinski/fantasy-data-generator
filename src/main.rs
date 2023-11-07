@@ -2,10 +2,12 @@ mod adventurers; pub mod letter_data; pub mod model;
 mod config;
 mod destinations;
 mod participations;
+mod artifacts;
+mod adventures;
 use std::time::Instant;
 use adventurers::AdventurerGenerator;
 
-use crate::{config::ConfigReader, destinations::DestinationGenerator, participations::ParticipationsGenerator};
+use crate::{config::ConfigReader, destinations::DestinationGenerator, participations::ParticipationsGenerator, artifacts::ArtifactGenerator};
 
 fn main() {
     let mut config_data = ConfigReader::new("config.toml");
@@ -28,4 +30,10 @@ fn main() {
     participations.generate();
     let duration = start.elapsed();
     println!("Generated participations in {:?}", duration);
+    // Generate artifacts
+    let start = Instant::now();
+    let mut art = ArtifactGenerator::new(config_data.get_first_artifacts(), config_data.get_first_adventures());
+    art.generate();
+    let duration = start.elapsed();
+    println!("Generated artifacts in {:?}", duration);
 }

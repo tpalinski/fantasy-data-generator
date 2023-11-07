@@ -1,5 +1,7 @@
 use std::fs;
 use serde::{Serialize, Deserialize};
+use mockd::datetime;
+
 
 #[derive(Serialize, Deserialize)]
 struct ConfigData {
@@ -11,15 +13,16 @@ struct FirstPeriod {
     pub adventurers: u64,
     pub destinations: u64,
     pub adventures: u64,
-    pub participations: u64
+    pub participations: u64,
+    pub artifacts: u64,
+    pub date: String,
 }
 
 impl ConfigData {
     pub fn new() -> Self {
-        ConfigData { first_period: FirstPeriod { adventurers: 0, destinations: 0, adventures: 0, participations: 0 } }
+        ConfigData { first_period: FirstPeriod { adventurers: 0, destinations: 0, adventures: 0, participations: 0, date: "01.01.1900".to_string(), artifacts: 0} }
     }
 }
-
 
 #[derive(Serialize, Deserialize)]
 pub struct ConfigReader {
@@ -61,5 +64,9 @@ impl ConfigReader {
 
     pub fn get_first_participations(&self) -> u64 {
         self.config_data.first_period.participations
+    }
+
+    pub fn get_first_artifacts(&self) -> u64 {
+        self.config_data.first_period.artifacts
     }
 }
