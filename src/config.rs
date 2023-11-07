@@ -74,4 +74,12 @@ impl ConfigReader {
     pub fn get_first_artifacts(&self) -> u64 {
         self.config_data.first_period.artifacts
     }
+
+    pub fn get_start_date(&self) -> String {
+        String::from(&self.config_data.first_period.start_date)
+    }
+
+    pub fn get_t1(&self) -> String {
+        String::from(&self.config_data.first_period.date)
+    }
 }

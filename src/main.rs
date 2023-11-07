@@ -7,7 +7,7 @@ mod adventures;
 use std::time::Instant;
 use adventurers::AdventurerGenerator;
 
-use crate::{config::ConfigReader, destinations::DestinationGenerator, participations::ParticipationsGenerator, artifacts::ArtifactGenerator};
+use crate::{config::ConfigReader, destinations::DestinationGenerator, participations::ParticipationsGenerator, artifacts::ArtifactGenerator, adventures::AdventureGenerator};
 
 fn main() {
     let mut config_data = ConfigReader::new("config.toml");
@@ -36,4 +36,10 @@ fn main() {
     art.generate();
     let duration = start.elapsed();
     println!("Generated artifacts in {:?}", duration);
+    // Generate adventures
+    let start = Instant::now();
+    let mut adventures_generator = AdventureGenerator::new(config_data.get_first_adventures(), 10, config_data.get_first_destinations(), config_data.get_start_date(), config_data.get_t1());
+    adventures_generator.generate();
+    let duration = start.elapsed();
+    println!("Generated adventures in {:?}", duration);
 }
