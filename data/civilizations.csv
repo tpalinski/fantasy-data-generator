@@ -1,9 +1,9 @@
-name,race,period,religion,
-Netheril,human,0,Mystral,
-Drow Kingdom,drow,340,Lolth,
-Sharran Enclaves,elf,-100,Shar,
-Imaskar,human,-3000,none,
-Sarrukh Empire of Okoth,sarrukh,-7000,Shar,
-Gondian Commonwealth,gnome,567,Gond,
-Cult of Bhaal,half-elf,1100,Bhaal,
-Theocracy of Selune,elf,-520,Selune,
+civilization_name,race,period,religion
+Netheril,human,0,Mystral
+Drow Kingdom,drow,340,Lolth
+Sharran Enclaves,elf,-100,Shar
+Imaskar,human,-3000,none
+Sarrukh Empire of Okoth,sarrukh,-7000,Shar
+Gondian Commonwealth,gnome,567,Gond
+Cult of Bhaal,half-elf,1100,Bhaal
+Theocracy of Selune,elf,-520,Selune
