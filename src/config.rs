@@ -119,4 +119,8 @@ impl ConfigReader {
     pub fn get_total_adventures(&self) -> u64 {
         self.get_first_adventures() + self.get_second_adventures()
     }
+
+    pub fn get_total_adventurers(&self) -> u64 {
+        self.get_first_adventurers() + self.get_second_adventurers()
+    }
 }

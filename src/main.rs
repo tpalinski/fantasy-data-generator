@@ -4,6 +4,7 @@ mod destinations;
 mod participations;
 mod artifacts;
 mod adventures;
+mod data_extract;
 use std::time::Instant;
 use adventurers::AdventurerGenerator;
 
@@ -60,4 +61,9 @@ fn main() {
     art.append(config_data.get_second_artifacts(), config_data.get_updated(), config_data.get_total_adventures());
     let duration = start.elapsed();
     println!("Generated and modified artifacts for T2 in {:?}", duration);
+    //Generate participations
+    let start = Instant::now();
+    participations.append(config_data.get_second_participations(), config_data.get_total_adventures(), config_data.get_total_adventurers());
+    let duration = start.elapsed();
+    println!("Generated participations for T2 in {:?}", duration);
 }
