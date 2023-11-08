@@ -2,7 +2,7 @@ use std::{fs::File, ops::Range};
 
 use rand::Rng;
 
-use crate::model::artifact::Artifact;
+use crate::{model::artifact::Artifact, data_extract};
 
 mod status;
 mod type_data;
@@ -34,26 +34,12 @@ impl ArtifactGenerator {
     }
 
     pub fn generate(&mut self){
-        let file = File::create("data/artifacts.csv").expect("Error while opening artifacts.csv");
-        let mut wrt = csv::Writer::from_writer(file);
         let generated = self.generate_multiple(0, self.amount, 0..self.adventures);
-        for record in generated {
-            let _ = wrt.serialize(record);
-        }
+        data_extract::DataExtract::write_data(generated, "data/artifacts.csv");
     }
 
     pub fn append(&mut self, amount: u64, mut updated: u64, total_adventures: u64) {
-        let file = File::open("data/artifacts.csv").expect("Error while opening artifacts.csv");
-        let mut rdr = csv::Reader::from_reader(file);
-        let mut data: Vec<Artifact> = rdr.deserialize().map(|data| {
-            let res: Artifact = match data {
-                Ok(a) => a,
-                Err(_) => {
-                    panic!("Error while deserializing artifacts");
-                }
-            };
-            return res;
-        }).collect();
+        let mut data: Vec<Artifact> = data_extract::DataExtract::get_data("data/artifacts.csv");
         for artifact in &mut data {
             if updated == 0 {break;}
             match artifact.identify() {
@@ -63,10 +49,6 @@ impl ArtifactGenerator {
         }
         let mut new_data = self.generate_multiple(self.amount, amount, self.adventures..total_adventures);
         data.append(&mut new_data);
-        let outfile = File::create("data/artifacts_t2.csv").expect("Error while opening artifacts_t2.csv");
-        let mut wrt = csv::Writer::from_writer(outfile);
-        for record in data {
-            let _ = wrt.serialize(record);
-        }
+        data_extract::DataExtract::write_data(data, "data/artifacts_t2.csv");
     }
 }
