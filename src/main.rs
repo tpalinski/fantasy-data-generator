@@ -66,4 +66,9 @@ fn main() {
     participations.append(config_data.get_second_participations(), config_data.get_total_adventures(), config_data.get_total_adventurers());
     let duration = start.elapsed();
     println!("Generated participations for T2 in {:?}", duration);
+    //Generate adventures
+    let start = Instant::now();
+    adventures_generator.append(config_data.get_second_adventures(), config_data.get_first_adventures(), config_data.get_t2());
+    let duration = start.elapsed();
+    println!("Generated adventures for T2 in {:?}", duration);
 }
