@@ -1,4 +1,5 @@
-use std::{fs::File, ops::Range};
+mod validation;
+use std::{fs::File, ops::Range, collections::HashMap};
 
 use rand::Rng;
 
@@ -24,12 +25,24 @@ impl ParticipationsGenerator {
         self.rng.gen_range(adventure_range.to_owned())
     }
 
-    fn generate_multiple(&mut self, amount: u64, adventure_range: Range<u64>, adventurer_range: Range<u64>) -> Vec<Participation> {
-        let mut gen: Vec<Participation> = Vec::new();
-        for _ in 0..amount {
+    fn generate_single(&mut self, adventure_range: &Range<u64>, adventurer_range: &Range<u64>, map: &mut HashMap<u128, ()>) -> Participation {
+        loop {
             let adventure = self.generate_adventure(&adventure_range);
             let adventurer = self.generate_adventurer(&adventurer_range);
-            let record = Participation::new(adventurer, adventure);
+            match validation::register_data(adventure, adventurer, map) {
+                Ok(()) => {
+                    return Participation::new(adventurer, adventure);
+                },
+                Err(()) => {}
+            };
+        }; 
+    }
+
+    fn generate_multiple(&mut self, amount: u64, adventure_range: Range<u64>, adventurer_range: Range<u64>) -> Vec<Participation> {
+        let mut validation_map: HashMap<u128, ()> = HashMap::with_capacity(amount as usize);
+        let mut gen: Vec<Participation> = Vec::new();
+        for _ in 0..amount {
+            let record = self.generate_single(&adventure_range, &adventurer_range, &mut validation_map);
             gen.push(record);
         }
         gen
