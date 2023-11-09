@@ -1,6 +1,6 @@
 CREATE DATABASE arcane_vault;
 
-go 
+go
 
 use arcane_vault
 
@@ -26,8 +26,8 @@ CREATE TABLE civilizations(
 CREATE TABLE destinations(
     destination_id INT PRIMARY KEY,
     name NVARCHAR(75),
-    coordinates NVARCHAR(20),
-    difficulty TINYINT CHECK (difficulty >= 1 AND difficulty <= 20),
+    coordinates NVARCHAR(30),
+    difficulty NVARCHAR(30),
     civilization NVARCHAR(50),
     FOREIGN KEY (civilization) REFERENCES civilizations(civilization_name) ON DELETE CASCADE,
 );
@@ -47,7 +47,7 @@ CREATE TABLE adventures(
 CREATE TABLE artifacts(
     artifact_id INT PRIMARY KEY,
     adventure_id INT,
-    status NVARCHAR(30) CHECK (status IN ('Unidentfied', 'Identified', 'Sold', 'Stolen', 'Broken')),
+    status NVARCHAR(30) CHECK (status IN ('Unidentified', 'Identified', 'Sold', 'Stolen', 'Damaged')),
     kind NVARCHAR(50),
     FOREIGN KEY (adventure_id) REFERENCES adventures(adventure_id) ON DELETE CASCADE,
 );
